@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>JS Bin</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        .score { border: solid 1px black}
+        .warning {background-color:  orange; color: purple;}
+        .warnimage { width: 18px; height: 18px; top: 5px; position: relative;}
+    </style>
+
+  </head>
+  <body>
+    <div id="example">
+        <div>
+            <p>1부터 10까지만 입력 가능</p>
+            <div>
+                점수 : <input type="text" class="score" v-model.number="score" v-bind:class="info"/>
+                <img src="/피카.jpeg" class="warnimage" v-show="info.warning" />
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+    var vm = new Vue({
+        el: "#example",
+        data : {
+            score: 0
+        },
+        computed : {
+            info : function() {
+                if(this.score >= 1 && this.score <= 100)
+                    return {warning:false};
+                else 
+                    return { warning:true };
+            }
+        }
+    })
+    </script>
+  </body>
+</html>

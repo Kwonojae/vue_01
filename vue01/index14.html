@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    
+    <title>JS Bin</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="example">
+       금액 :  <span>{{amount}}원</span>
+    </div>
+    <script type="text/javascript">
+        var vm = new Vue({
+            el : '#example',
+            data : { amt : 1234567 },
+            computed : {
+                amount : {
+                    get : function() {
+                        var s = new String("" + this.amt);
+                        console.log(this.amt);
+                        var result = "";
+                        var num = 0;
+                        for(var i=s.length-1; i>=0; i--) {
+                            console.log(s[i]);
+                            result = s[i] + result;
+                            console.log("result :"+result);
+                            if(num % 3 == 2 && i != 0)
+                                console.log("num: " + num);
+                                result = "," + result;
+                                console.log("ifresult: " + result);
+                            num++;
+                            console.log(result);
+                            return result;
+                        }
+                    },
+                    set : function(amt) {
+                        if(typeof(amt) === 'string') {
+                            console.log("amt: " + typeof(amt));
+                            var result = parseInt(amt.replace(/,/g,""))
+                            console.log("result parseInt: " + result);
+                            if(isNaN(result)) this.amt = 0;
+                        }else if (typeof(amt) === "number")
+                            this.amt = amt;
+                    }
+                }
+            }
+        });
+    </script>
+
+  </body>
+</html>
