@@ -15,13 +15,21 @@ module.exports = { //노드의 모듈을 만듬
         app: path.join(__dirname,'main.js'), // 하나로 합쳐질 파일의 이름
     },
     module:{
-        //웹팩의 핵심 
+        //웹팩의 핵심
+        //loader 의 역활 js가 아닌 애들을 js로 만들어주는 역활을 한다. 
         rules: [{ //자바스크립트 파일을 합칠때 어떻게 합칠지 적는곳
             test: /\.vue$/,// 파일명이 .vue로 끝나는 파일 $ 는 끝을 의미함 
             loader: 'vue-loader',
+        }, {
+            test: /\.css$/,
+            use: [
+                'vue-style-loader',
+                'css-loader',
+            ]
         }],
     },
     plugins:[
+        //
         new VueLoaderPlugin(),
     ],
     output: {
