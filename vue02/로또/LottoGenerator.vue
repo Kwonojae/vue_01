@@ -25,6 +25,7 @@
         const bonusNumber = shuffle[shuffle.length -1 ];
         const winNumbers = shuffle.slice(0, 6).sort((p,c) => p - c );
         return [...winNumbers, bonusNumber];
+        
     }
     const timeouts =[];
     export default {     
